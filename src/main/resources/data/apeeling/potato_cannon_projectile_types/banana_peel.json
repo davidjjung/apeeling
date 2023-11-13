@@ -1,0 +1,11 @@
+{
+  "items": [
+    "apeeling:banana_peel"
+  ],
+  "damage": 1,
+  "reload_ticks": 10,
+  "knockback": 0.2,
+  "velocity_multiplier": 1.2,
+  "sticky": true,
+  "sound_pitch": 1.3
+}

@@ -1,0 +1,46 @@
+modLoader = "javafml"
+loaderVersion = "[32,)"
+issueTrackerURL = "https://github.com/davidjjung/apeeling/issues"
+license = "MIT License"
+
+[[mods]]
+modId = "apeeling"
+version = "${file.jarVersion}"
+logoFile = "logo.png"
+itemIcon = "apeeling:banana_peel"
+configBackground = "neapolitan:textures/block/banana_bundle_side.png"
+authors = "DavigJ"
+credits = "Thanks to KingRolly for the banana peel sprite!"
+displayURL = "https://github.com/davidjjung/apeeling"
+displayName = "A-peel-ing"
+description = '''
+    A Neapolitan add-on that adds banana peel items.
+    '''
+
+[[dependencies.apeeling]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.19.2,1.19.3)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.apeeling]]
+modId = "forge"
+mandatory = true
+versionRange = "[43.3.0,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.apeeling]]
+modId = "blueprint"
+mandatory = true
+versionRange = "[6.2.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.apeeling]]
+modId = "neapolitan"
+mandatory = true
+versionRange = "[4.1.0,)"
+ordering = "AFTER"
+side = "BOTH"
