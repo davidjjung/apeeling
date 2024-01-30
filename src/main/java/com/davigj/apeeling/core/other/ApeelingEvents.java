@@ -5,24 +5,19 @@ import com.davigj.apeeling.core.ApeelingMod;
 import com.davigj.apeeling.core.registry.ApeelingItems;
 import com.davigj.apeeling.core.registry.ApeelingSounds;
 import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeel;
-import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
-import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = ApeelingMod.MOD_ID)
 public class ApeelingEvents {
