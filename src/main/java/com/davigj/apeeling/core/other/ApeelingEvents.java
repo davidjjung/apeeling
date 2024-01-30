@@ -3,20 +3,45 @@ package com.davigj.apeeling.core.other;
 import com.davigj.apeeling.core.ApeelingConfig;
 import com.davigj.apeeling.core.ApeelingMod;
 import com.davigj.apeeling.core.registry.ApeelingItems;
+import com.davigj.apeeling.core.registry.ApeelingSounds;
 import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeel;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.phys.AABB;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.List;
+import java.util.Random;
+
 @Mod.EventBusSubscriber(modid = ApeelingMod.MOD_ID)
 public class ApeelingEvents {
+
+    @SubscribeEvent
+    public static void looneyTunes(TickEvent.PlayerTickEvent event) {
+        if (!ApeelingConfig.COMMON.slipSound.get() || event.player.level.isClientSide) {
+            return;
+        }
+        Player player = event.player;
+        if (player.tickCount % 5 == 0 && event.phase.equals(TickEvent.Phase.END)) {
+            List<BananaPeel> list = player.level.getEntitiesOfClass(BananaPeel.class, player.getBoundingBox());
+            if (!list.isEmpty()) {
+                BananaPeel peel = list.get(0);
+                peel.playSound(ApeelingSounds.SLIP.get(), 1.0F, 1.0F + (0.4F * (player.getRandom().nextFloat() - 0.5F)));
+            }
+        }
+    }
+
     @SubscribeEvent
     public static void onEntityDamage(AttackEntityEvent event) {
         Player player = event.getEntity();
@@ -34,9 +59,9 @@ public class ApeelingEvents {
             ItemStack stack = event.getResultStack();
             LivingEntity entity = event.getEntity();
             boolean playerAction = entity instanceof Player;
-            if (playerAction && !((Player)entity).getAbilities().instabuild && stack.isEmpty()) {
+            if (playerAction && !((Player) entity).getAbilities().instabuild && stack.isEmpty()) {
                 if (stack.isEmpty()) {
-                    ((Player)entity).getCooldowns().addCooldown(ApeelingItems.BANANA_PEEL.get(), 10);
+                    ((Player) entity).getCooldowns().addCooldown(ApeelingItems.BANANA_PEEL.get(), 10);
                 }
             }
             if (ApeelingConfig.COMMON.leftoverPeels.get()) {
@@ -45,9 +70,9 @@ public class ApeelingEvents {
                 } else {
                     ItemStack itemstack = new ItemStack((ItemLike) ApeelingItems.BANANA_PEEL.get(), 1);
                     if (playerAction) {
-                        if (!((Player)entity).getAbilities().instabuild) {
-                            if (!((Player)entity).getInventory().add(itemstack)) {
-                                ((Player)entity).drop(itemstack, false);
+                        if (!((Player) entity).getAbilities().instabuild) {
+                            if (!((Player) entity).getInventory().add(itemstack)) {
+                                ((Player) entity).drop(itemstack, false);
                             }
                         }
                     }

@@ -1,0 +1,11 @@
+{
+  "entity.banana_peel.slip": {
+    "sounds": [
+      {
+        "name": "apeeling:entity/slip",
+        "stream": true
+      }
+    ],
+    "subtitle": "subtitles.apeeling.entity.banana_peel.slip"
+  }
+}
