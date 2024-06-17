@@ -3,7 +3,7 @@
   "package": "com.davigj.apeeling.core.mixin",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
-  "refmap": "thief_tweaks.refmap.json",
+  "refmap": "apeeling.refmap.json",
   "mixins": [
     "BananaBunchMixin",
     "BananaPeelMixin",

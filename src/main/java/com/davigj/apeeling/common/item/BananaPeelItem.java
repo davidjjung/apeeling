@@ -63,7 +63,7 @@ public class BananaPeelItem extends Item {
                 float f1 = -Mth.sin(pitch * 0.017453292F) * 0.6F;
                 float f2 = Mth.cos(yaw * 0.017453292F) * Mth.cos(pitch * 0.017453292F) * 0.6F;
                 Vec3 vector3d = player.getDeltaMovement();
-                bananapeel.setDeltaMovement((new Vec3((double)f, (double)f1, (double)f2)).add(vector3d.x, player.isOnGround() ? 0.0 : vector3d.y, vector3d.z));
+                bananapeel.setDeltaMovement((new Vec3((double)f, (double)f1, (double)f2)).add(vector3d.x, player.onGround() ? 0.0 : vector3d.y, vector3d.z));
                 world.addFreshEntity(bananapeel);
             }
         }
@@ -82,6 +82,6 @@ public class BananaPeelItem extends Item {
             }
         }
 
-        world.playSound(player, player.blockPosition(), (SoundEvent) NeapolitanSoundEvents.ITEM_BANANA_BUNCH_OPEN.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+        world.playSound(player, player.blockPosition(), (SoundEvent) NeapolitanSoundEvents.BANANA_BUNCH_OPEN.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
     }
 }
