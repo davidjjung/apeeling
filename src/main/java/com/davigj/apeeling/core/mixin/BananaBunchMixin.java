@@ -19,7 +19,7 @@ public class BananaBunchMixin {
         }
     }
 
-    @Inject(method = "throwBanana", at = @At("HEAD"), cancellable = true, remap = false)
+    @Inject(method = "throwPeel", at = @At("HEAD"), cancellable = true, remap = false)
     private void modifyThrowBanana(Level world, Player player, float pitch, float yaw, CallbackInfo ci) {
         if (ApeelingConfig.COMMON.bunchesDontPeel.get()) {
             ci.cancel();
