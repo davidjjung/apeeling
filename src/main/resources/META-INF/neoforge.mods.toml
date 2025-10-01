@@ -1,46 +1,42 @@
 modLoader = "javafml"
-loaderVersion = "[47,)"
+loaderVersion = "[1,)"
 issueTrackerURL = "https://github.com/davidjjung/apeeling/issues"
 license = "MIT License"
 
+[[mixins]]
+config = "apeeling.mixins.json"
+
 [[mods]]
 modId = "apeeling"
-version = "${file.jarVersion}"
+version = "${mod_version}"
 logoFile = "logo.png"
 itemIcon = "apeeling:banana_peel"
 configBackground = "neapolitan:textures/block/banana_bundle_side.png"
 authors = "DavigJ"
 credits = "Thanks to KingRolly for the banana peel sprite!"
-displayURL = "https://github.com/davidjjung/apeeling"
-displayName = "A-peel-ing"
+displayURL = "https://modrinth.com/project/apeeling"
+displayName = "Apeeling"
 description = '''
     A Neapolitan add-on that adds banana peel items.
     '''
 
 [[dependencies.apeeling]]
 modId = "minecraft"
-mandatory = true
-versionRange = "[1.20.1,1.21)"
-ordering = "NONE"
-side = "BOTH"
-
-[[dependencies.apeeling]]
-modId = "forge"
-mandatory = true
-versionRange = "[47.1,)"
-ordering = "NONE"
-side = "BOTH"
-
-[[dependencies.apeeling]]
-modId = "blueprint"
-mandatory = true
-versionRange = "[7.1.0,)"
+type = "required"
+versionRange = "[${mc_version}]"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.apeeling]]
-modId = "neapolitan"
-mandatory = true
-versionRange = "[5.0.0,)"
+modId = "neoforge"
+type = "required"
+versionRange = "[${neoforge},)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.apeeling]]
+modId = "blueprint"
+type = "required"
+versionRange = "[${blueprint},)"
 ordering = "AFTER"
 side = "BOTH"

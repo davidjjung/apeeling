@@ -3,7 +3,7 @@ package com.davigj.apeeling.core.other;
 import com.davigj.apeeling.core.ApeelingConfig;
 import com.davigj.apeeling.core.ApeelingMod;
 import com.davigj.apeeling.core.registry.ApeelingItems;
-import com.davigj.apeeling.core.registry.ApeelingSounds;
+import com.davigj.apeeling.core.registry.ApeelingSoundEvents;
 import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -11,28 +11,28 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
+import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = ApeelingMod.MOD_ID)
+@EventBusSubscriber(modid = ApeelingMod.MOD_ID)
 public class ApeelingEvents {
 
     @SubscribeEvent
-    public static void looneyTunes(TickEvent.PlayerTickEvent event) {
-        if (!ApeelingConfig.COMMON.slipSound.get() || event.player.level().isClientSide) {
+    public static void looneyTunes(PlayerTickEvent.Post event) {
+        if (!ApeelingConfig.COMMON.slipSound.get() || event.getEntity().level().isClientSide) {
             return;
         }
-        Player player = event.player;
-        if (player.tickCount % 5 == 0 && event.phase.equals(TickEvent.Phase.END)) {
+        Player player = event.getEntity();
+        if (player.tickCount % 5 == 0) {
             List<BananaPeel> list = player.level().getEntitiesOfClass(BananaPeel.class, player.getBoundingBox());
             if (!list.isEmpty()) {
                 BananaPeel peel = list.get(0);
-                peel.playSound(ApeelingSounds.SLIP.get(), 1.0F, 1.0F + (0.4F * (player.getRandom().nextFloat() - 0.5F)));
+                peel.playSound(ApeelingSoundEvents.SLIP.get(), 1.0F, 1.0F + (0.4F * (player.getRandom().nextFloat() - 0.5F)));
             }
         }
     }

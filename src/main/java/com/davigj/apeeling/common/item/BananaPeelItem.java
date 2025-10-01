@@ -1,7 +1,6 @@
 package com.davigj.apeeling.common.item;
 
 import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeel;
-import com.teamabnormals.neapolitan.common.item.BananaBunchItem;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanSoundEvents;
 import net.minecraft.advancements.CriteriaTriggers;

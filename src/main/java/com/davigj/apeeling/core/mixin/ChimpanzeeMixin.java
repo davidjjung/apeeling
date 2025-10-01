@@ -17,6 +17,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Objects;
+
 @Mixin(Chimpanzee.class)
 public class ChimpanzeeMixin {
 
@@ -46,7 +48,7 @@ public class ChimpanzeeMixin {
     public void modifyEatSnack(CallbackInfo ci) {
         Chimpanzee chimp = (Chimpanzee) (Object) this;
         if (!chimp.getSnack().isEmpty() && chimp.getSnack().getItem() == NeapolitanItems.BANANA.get()) {
-            chimp.heal((float) ((Item) NeapolitanItems.BANANA.get()).getFoodProperties().getNutrition());
+            chimp.heal((float) Objects.requireNonNull(((Item) NeapolitanItems.BANANA.get()).getFoodProperties(chimp.getSnack(), chimp)).nutrition());
             chimp.getSnack().finishUsingItem(chimp.level(), chimp);
             chimp.setItemInHand(chimp.getSnackHand(), new ItemStack(ApeelingItems.BANANA_PEEL.get()));
             chimp.setHunger(0);
