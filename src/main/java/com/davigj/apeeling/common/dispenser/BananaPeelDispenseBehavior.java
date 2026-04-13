@@ -15,6 +15,7 @@ public class BananaPeelDispenseBehavior extends OptionalDispenseItemBehavior {
         Direction direction = source.getBlockState().getValue(DispenserBlock.FACING);
         EntityType<?> entitytype = (EntityType<?>) NeapolitanEntityTypes.BANANA_PEEL.get();
         entitytype.spawn(source.getLevel(), stack, null, source.getPos().relative(direction), MobSpawnType.DISPENSER, direction != Direction.UP, false);
+        stack.shrink(1);
         return stack;
     }
 }
