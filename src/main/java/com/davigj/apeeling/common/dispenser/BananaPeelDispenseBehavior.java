@@ -8,13 +8,15 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.DispenserBlock;
+import org.jetbrains.annotations.NotNull;
 
 public class BananaPeelDispenseBehavior extends OptionalDispenseItemBehavior {
 
-    public ItemStack execute(BlockSource source, ItemStack stack) {
+    public @NotNull ItemStack execute(BlockSource source, @NotNull ItemStack stack) {
         Direction direction = source.state().getValue(DispenserBlock.FACING);
         EntityType<?> entitytype = (EntityType<?>) NeapolitanEntityTypes.BANANA_PEEL.get();
         entitytype.spawn(source.level(), stack, null, source.pos().relative(direction), MobSpawnType.DISPENSER, direction != Direction.UP, false);
+        stack.shrink(1);
         return stack;
     }
 }
